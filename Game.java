@@ -19,7 +19,6 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-        
     /**
      * Create the game and initialise its internal map.
      */
@@ -84,8 +83,11 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to my survival text adventure!!");
+        System.out.println("You will navigate several buildings");
+        System.out.println("Each building will have health pickups and collectables");
+        System.out.println("Health pickups and collectibles will be randomized");
+        System.out.println("Find as many collectibles as you can/Don't let your health run out");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
@@ -115,8 +117,12 @@ public class Game
                 goRoom(command);
                 break;
 
-            case QUIT:
+            case QUITGAME:
                 wantToQuit = quit(command);
+                break;
+                
+            case LOOK:
+                look();
                 break;
         }
         return wantToQuit;
@@ -131,11 +137,13 @@ public class Game
      */
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("You are lost. You are alone. You must Survive.");
+        System.out.println("You have been stationed on the front lines of war.");
+        System.out.println("You will be faced with a serious of decisions");
+        System.out.println("that will determine your fate on the coming conflict");
         System.out.println();
         System.out.println("Your command words are:");
-        parser.showCommands();
+        System.out.println(parser.getCommands().getCommandList());
     }
 
     /** 
@@ -178,5 +186,13 @@ public class Game
         else {
             return true;  // signal that we want to quit
         }
+    }
+    
+    /**
+     * This method will give the long description
+     * of the current room the user is in.
+     */
+    private void look(){
+        System.out.println(currentRoom.getLongDescription());
     }
 }

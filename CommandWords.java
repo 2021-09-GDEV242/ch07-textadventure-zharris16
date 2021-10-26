@@ -59,11 +59,12 @@ public class CommandWords
     /**
      * Print all valid commands to System.out.
      */
-    public void showAll() 
+    public String getCommandList() 
     {
-        for(String command : validCommands.keySet()) {
-            System.out.print(command + "  ");
+        String commandsString = "";
+        for(String key : validCommands.keySet()) {
+            commandsString += " '" + validCommands.get(key) + "' ";
         }
-        System.out.println();
+        return commandsString;
     }
 }
