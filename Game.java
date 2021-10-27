@@ -1,3 +1,4 @@
+
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -11,14 +12,17 @@
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
  * 
- * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author  Zachary Harris
+ * @version 10/26/21
  */
+
+import java.util.ArrayList;
 
 public class Game 
 {
     private Parser parser;
     private Room currentRoom;
+    private ArrayList<String> inventory;
     /**
      * Create the game and initialise its internal map.
      */
@@ -26,6 +30,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        ArrayList<String> inventory = new ArrayList<>();
     }
 
     /**
@@ -34,13 +39,23 @@ public class Game
     private void createRooms()
     {
         Room outside, theater, pub, lab, office;
+        Items roomItems = new Items();
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
+        
         theater = new Room("in a lecture theater");
+        theater.addRoomItems(roomItems.getRandomItems(3));
+        
         pub = new Room("in the campus pub");
+        pub.addRoomItems(roomItems.getRandomItems(3));
+        
         lab = new Room("in a computing lab");
+        lab.addRoomItems(roomItems.getRandomItems(3));
+        
         office = new Room("in the computing admin office");
+        office.addRoomItems(roomItems.getRandomItems(3));
+        
         
         // initialise room exits
         outside.setExit("east", theater);
@@ -57,6 +72,8 @@ public class Game
         office.setExit("west", lab);
 
         currentRoom = outside;  // start game outside
+        
+        
     }
 
     /**
@@ -124,6 +141,13 @@ public class Game
             case LOOK:
                 look();
                 break;
+                
+            case TAKE:
+                
+                
+            
+                
+            
         }
         return wantToQuit;
     }
@@ -169,6 +193,7 @@ public class Game
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+            currentRoom.displayItemsInRoom();
         }
     }
 
