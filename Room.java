@@ -43,6 +43,16 @@ public class Room
         System.out.println("Items in the room: " + roomItems);
     }
     
+    public String takeRoomItem(String item){
+        String returnItem = "";
+        if(! roomItems.contains(item)){
+            System.out.println("Item not found");
+            return returnItem;
+        } else{
+            return item;
+        }
+    }
+    
     /**
      * Define an exit from this room.
      * @param direction The direction of the exit.

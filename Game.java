@@ -23,14 +23,18 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private ArrayList<String> inventory;
+    private Player player;
+    private String lastDirection;
     /**
      * Create the game and initialise its internal map.
      */
     public Game() 
     {
+        player = new Player("Bob");
         createRooms();
         parser = new Parser();
         ArrayList<String> inventory = new ArrayList<>();
+        
     }
 
     /**
@@ -72,7 +76,7 @@ public class Game
         office.setExit("west", lab);
 
         currentRoom = outside;  // start game outside
-        
+        player.setRoom(currentRoom);
         
     }
 
@@ -123,27 +127,43 @@ public class Game
 
         switch (commandWord) {
             case UNKNOWN:
-                System.out.println("I don't know what you mean...");
+                System.out.println("I dont know what that means...");
                 break;
 
             case HELP:
                 printHelp();
+                System.out.println();
                 break;
 
             case GO:
                 goRoom(command);
+                System.out.println();
+                break;
+                
+            case BACK:
+                goBack(command);
+                System.out.println();
                 break;
 
             case QUITGAME:
                 wantToQuit = quit(command);
+                System.out.println();
                 break;
                 
             case LOOK:
                 look();
+                System.out.println();
+                break;
+                
+            case INVENTORY:
+                player.displayInventory();
+                System.out.println();
                 break;
                 
             case TAKE:
-                
+                take(command);
+                System.out.println();
+                break;
                 
             
                 
@@ -191,9 +211,67 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
+            lastDirection = direction;
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
             currentRoom.displayItemsInRoom();
+            player.setRoom(currentRoom);
+        }
+    }
+    
+    private void goBack(Command command) 
+    {
+        if (lastDirection.equals("north")){
+            currentRoom = currentRoom.getExit("south");
+            lastDirection = "south";
+            System.out.println(currentRoom.getLongDescription());
+            currentRoom.displayItemsInRoom();
+            System.out.println();
+        }
+        else if (lastDirection.equals("south")) {                 
+            currentRoom = currentRoom.getExit("north");
+            lastDirection = "north";
+            System.out.println(currentRoom.getLongDescription());
+            currentRoom.displayItemsInRoom();
+            System.out.println();
+        }
+        else if (lastDirection.equals("west")) {
+            currentRoom = currentRoom.getExit("east");
+            lastDirection = "east";
+            System.out.println(currentRoom.getLongDescription());
+            currentRoom.displayItemsInRoom();
+            System.out.println();
+        } 
+        else if (lastDirection.equals("east")) {
+            currentRoom = currentRoom.getExit("west");
+            lastDirection = "west";
+            System.out.println(currentRoom.getLongDescription());
+            currentRoom.displayItemsInRoom();
+            System.out.println();
+        }
+    }
+    
+    /**
+     * This method takes an item from the currentRoom
+     */
+    private void take(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            // if there is no second word, we don't know where to go...
+            System.out.println("Take what?");
+            return;
+        }
+
+        String item = command.getSecondWord();
+
+        // Try to leave current room.
+        String takenItem = currentRoom.takeRoomItem(item);
+
+        if (takenItem.length() == 0) {
+            System.out.println("That item is not in the room!");
+        }
+        else {
+            player.setInventory(takenItem);
         }
     }
 
