@@ -17,6 +17,7 @@
  */
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Game 
 {
@@ -25,6 +26,7 @@ public class Game
     private ArrayList<String> inventory;
     private Player player;
     private String lastDirection;
+    private Stack<Room> previousRooms;
     /**
      * Create the game and initialise its internal map.
      */
@@ -34,7 +36,7 @@ public class Game
         createRooms();
         parser = new Parser();
         ArrayList<String> inventory = new ArrayList<>();
-        
+        previousRooms = new Stack<Room>();
     }
 
     /**
@@ -141,7 +143,7 @@ public class Game
                 break;
                 
             case BACK:
-                goBack(command);
+                goBack();
                 System.out.println();
                 break;
 
@@ -211,7 +213,7 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
-            lastDirection = direction;
+            previousRooms.push(currentRoom);
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
             currentRoom.displayItemsInRoom();
@@ -219,36 +221,50 @@ public class Game
         }
     }
     
-    private void goBack(Command command) 
+    /**
+     * This method is NOT used. Was a product of Exercise 8.23
+     */
+    private void goBackOne(Command command) 
     {
         if (lastDirection.equals("north")){
             currentRoom = currentRoom.getExit("south");
             lastDirection = "south";
             System.out.println(currentRoom.getLongDescription());
             currentRoom.displayItemsInRoom();
-            System.out.println();
+            
         }
         else if (lastDirection.equals("south")) {                 
             currentRoom = currentRoom.getExit("north");
             lastDirection = "north";
             System.out.println(currentRoom.getLongDescription());
             currentRoom.displayItemsInRoom();
-            System.out.println();
+            
         }
         else if (lastDirection.equals("west")) {
             currentRoom = currentRoom.getExit("east");
             lastDirection = "east";
             System.out.println(currentRoom.getLongDescription());
             currentRoom.displayItemsInRoom();
-            System.out.println();
+            
         } 
         else if (lastDirection.equals("east")) {
             currentRoom = currentRoom.getExit("west");
             lastDirection = "west";
             System.out.println(currentRoom.getLongDescription());
             currentRoom.displayItemsInRoom();
-            System.out.println();
+            
         }
+    }
+    
+    private void goBack(){
+        if(previousRooms.size() == 0){
+            System.out.println("You are at the starting area");
+        } else{
+            currentRoom = previousRooms.pop();
+            System.out.println(currentRoom.getLongDescription());
+            currentRoom.displayItemsInRoom();
+        }
+        
     }
     
     /**
