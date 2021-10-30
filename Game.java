@@ -1,9 +1,8 @@
 
 /**
- *  This class is the main class of the "World of Zuul" application. 
- *  "World of Zuul" is a very simple, text based adventure game.  Users 
- *  can walk around some scenery. That's all. It should really be extended 
- *  to make it more interesting!
+ *  This class is the main class of the my "Escape Room" inspired game.
+ *  You will be locked in a gated University Campus.
+ *  You must collect a keycard to unlock the main gate to escape and find valuable collectibles.
  * 
  *  To play this game, create an instance of this class and call the "play"
  *  method.
@@ -106,12 +105,13 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to my survival text adventure!!");
-        System.out.println("You will navigate several buildings");
-        System.out.println("Each building will have health pickups and collectables");
-        System.out.println("Health pickups and collectibles will be randomized");
-        System.out.println("Find as many collectibles as you can/Don't let your health run out");
-        System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.println("Welcome to my escape room text adventure!");
+        System.out.println("You will need to escape a locked gated University campus.");
+        System.out.println("Each building will have collectibles and ");
+        System.out.println("one keycard that will open the front main gate to escape.");
+        System.out.println("Collecitble items and the keycard will be randomized");
+        System.out.println("Find as many collectibles as you of the highest value.");
+        System.out.println("Type '" + CommandWord.HELP + "' to see your list of commands.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
