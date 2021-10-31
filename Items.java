@@ -21,7 +21,8 @@ public class Items
     public Items()
     {
         itemArray = new String[] {"Book", "Letter", "Matches", "Lighter", "Pen", "Jacket",
-                                    "Key", "Flashlight", "Broken Phone"};
+                                  "Keycard", "Flashlight", "Textbook", "IDPic", "Lunchbox",
+                                  "Toolbox", "Labtop"};
         rand = new Random();
     }
 

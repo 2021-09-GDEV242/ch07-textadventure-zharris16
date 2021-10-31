@@ -43,38 +43,137 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room 
+        outside, frontGate,
+        theater, theaterBackstage, theaterDressRoom, theaterSoundBooth, 
+        pub, pubKitchen, pubManagerOffice,
+        complab, complabAdmin, complabITDep,
+        courtyard, weightRoom, coachingOffice, basketballCourt, badmittenCourt, tennisCourt;
         Items roomItems = new Items();
       
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
+        outside = new Room("beyond the courtyard in the middle of the University");
+        
+        
+        
+        frontGate = new Room("at the front gate/exit");
+        frontGate.addRoomItems(roomItems.getRandomItems(3));
         
         theater = new Room("in a lecture theater");
         theater.addRoomItems(roomItems.getRandomItems(3));
         
+        theaterBackstage = new Room("in the backstage area of the theator");
+        theaterBackstage.addRoomItems(roomItems.getRandomItems(3));
+        
+        theaterDressRoom = new Room("behind the backstage area in the dressing rooms");
+        theaterDressRoom.addRoomItems(roomItems.getRandomItems(3));
+        
+        theaterSoundBooth = new Room("above the theator in the sound booth");
+        theaterSoundBooth.addRoomItems(roomItems.getRandomItems(3));
+        
+        
+        
         pub = new Room("in the campus pub");
         pub.addRoomItems(roomItems.getRandomItems(3));
         
-        lab = new Room("in a computing lab");
-        lab.addRoomItems(roomItems.getRandomItems(3));
+        pubKitchen = new Room("in the campus pubs kitchen");
+        pubKitchen.addRoomItems(roomItems.getRandomItems(3));
         
-        office = new Room("in the computing admin office");
-        office.addRoomItems(roomItems.getRandomItems(3));
+        pubManagerOffice = new Room("in the campus pubs managers office");
+        pubManagerOffice.addRoomItems(roomItems.getRandomItems(3));
+        
+
+        
+        complab = new Room("in a computing lab");
+        complab.addRoomItems(roomItems.getRandomItems(3));
+        
+        complabAdmin = new Room("in the computer labs Admin Office");
+        complabAdmin.addRoomItems(roomItems.getRandomItems(3));
+        
+        complabITDep = new Room("in the computer labs IT department");
+        complabITDep.addRoomItems(roomItems.getRandomItems(3));
+        
+        
+        
+        courtyard = new Room("in the campus courtyard/activity area");
+        courtyard.addRoomItems(roomItems.getRandomItems(3));
+        
+        weightRoom = new Room("in the campuses weight room next to the courtyard");
+        weightRoom.addRoomItems(roomItems.getRandomItems(3));
+        
+        coachingOffice = new Room("in the coaching offices for the university sports teams");
+        coachingOffice.addRoomItems(roomItems.getRandomItems(3));
+        
+        basketballCourt = new Room("in the courtyards basketball court");
+        basketballCourt.addRoomItems(roomItems.getRandomItems(3));
+        
+        badmittenCourt = new Room("in the courtyards badmitten court");
+        badmittenCourt.addRoomItems(roomItems.getRandomItems(3));
+        
+        tennisCourt = new Room("in the courtyards tennis court");
+        tennisCourt.addRoomItems(roomItems.getRandomItems(3));
+        
+        
         
         
         // initialise room exits
-        outside.setExit("east", theater);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+        outside.setExit("east", pub);
+        outside.setExit("south", complab);
+        outside.setExit("west", theater);
+        outside.setExit("north", courtyard);
 
-        theater.setExit("west", outside);
+        
+        
+        theater.setExit("east", outside);
+        theater.setExit("west", theaterBackstage);
+        theater.setExit("north", theaterSoundBooth);
+        
+        theaterBackstage.setExit("east", theater);
+        theaterBackstage.setExit("north", theaterDressRoom);
+        
+        theaterDressRoom.setExit("east", theaterSoundBooth);
+        theaterDressRoom.setExit("south", theaterBackstage);
+        
+        theaterSoundBooth.setExit("west", theaterDressRoom);
+        theaterSoundBooth.setExit("south", theater);
 
-        pub.setExit("east", outside);
+        
+        
+        pub.setExit("east", pubKitchen);
+        pub.setExit("west", outside);
+        
+        pubKitchen.setExit("west", pub);
+        pubKitchen.setExit("south", pubManagerOffice);
+        
+        pubManagerOffice.setExit("north", pubKitchen);
+        
+        
 
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
+        complab.setExit("north", outside);
+        complab.setExit("east", complabAdmin);
+        complab.setExit("south", complabITDep);
 
-        office.setExit("west", lab);
+        
+        
+        complabAdmin.setExit("east", complab);
+        
+        
+        
+        complabITDep.setExit("north", complab);
+        
+        
+        
+        courtyard.setExit("north", basketballCourt);
+        courtyard.setExit("south", outside);
+        courtyard.setExit("west", weightRoom);
+        courtyard.setExit("east", tennisCourt);
+        
+        
+        
+        basketballCourt.setExit("south", courtyard);
+        basketballCourt.setExit("north", frontGate);
+        
+        //. . . . . . . . . 
 
         currentRoom = outside;  // start game outside
         player.setRoom(currentRoom);
