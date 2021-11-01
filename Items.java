@@ -1,6 +1,6 @@
 
 /**
- * This class stores the 'items' that can be collected in game.
+ * This class generates the 'items' that can be collected in game.
  *
  * @author Zachary Harris
  * @version 10/26/21
@@ -12,30 +12,44 @@ import java.util.ArrayList;
 public class Items
 {
     // instance variables - replace the example below with your own
-    
-    private String[] itemArray;
+
+    private Item[] itemArray;
     private Random rand;
     /**
      * Constructor for objects of class Items
      */
     public Items()
     {
-        itemArray = new String[] {"Book", "Letter", "Matches", "Lighter", "Pen", "Jacket",
-                                  "Keycard", "Flashlight", "Textbook", "IDPic", "Lunchbox",
-                                  "Toolbox", "Labtop"};
+        //itemArray = new Item[] {"Book", "Letter", "Matches", "Lighter", "Pen", "Jacket",
+        //"Keycard", "Flashlight", "Textbook", "IDPic", "Lunchbox",
+        //"Toolbox", "Labtop"};
+        itemArray = new Item[10];
+        itemArray[0] = new Item("Book", 10, 5);
+        itemArray[1] = new Item("Letter", 20, 1);
+        itemArray[2] = new Item("Matches", 15, 2);
+        itemArray[3] = new Item("Lighter", 30, 3);
+        itemArray[4] = new Item("Pen", 20, 3);
+        itemArray[5] = new Item("Jacket", 10, 5);
+        itemArray[6] = new Item("Flashlight", 10, 5);
+        itemArray[7] = new Item("Keycard", 10, 5);
+        itemArray[8] = new Item("Textbook", 10, 5);
+        itemArray[9] = new Item("Lunchbox", 10, 5);
         rand = new Random();
     }
 
     /**
      * This method allows randomizes the items that can be found in each room.
+     * @param numItems - number of game items that spawn in each room.
+     * @return ArrayList<Item> - an array of random items.
      */
-    public ArrayList<String> getRandomItems(int numItems)
+    public ArrayList<Item> getRandomItems(int numItems)
     {
-        ArrayList<String> items = new ArrayList<String>();
+        ArrayList<Item> items = new ArrayList<Item>();
         for(int i = 0; i < numItems; i++){
             items.add(itemArray[rand.nextInt(itemArray.length)]);
         }
         return items;
-         
+
     }
+
 }

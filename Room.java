@@ -2,26 +2,24 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 /**
- * Class Room - a room in an adventure game.
- *
- * This class is part of the "World of Zuul" application. 
- * "World of Zuul" is a very simple, text based adventure game.  
+ * Class Room - a room in my escape room game.  
  *
  * A "Room" represents one location in the scenery of the game.  It is 
  * connected to other rooms via exits.  For each existing exit, the room 
  * stores a reference to the neighboring room.
  * 
- * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author  Zachary Harris
+ * @version 10.30.21
  */
 
 public class Room 
 {
     private String description;
     private HashMap<String, Room> exits;   // stores exits of this room.
-    private ArrayList<String> roomItems;              //will be used to set the items in a room.
+    private ArrayList<Item> roomItems;     //will be used to set the items in a room.
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -32,25 +30,38 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<>();
-        roomItems = new ArrayList<String>();
+        roomItems = new ArrayList<Item>();
     }
 
-    public void addRoomItems(ArrayList<String> items){
+    /**
+     * This method allows an item to be added to a room.
+     * @param ArrayList<Items> items: an arraylist to store items to put into a room.
+     */
+    public void addRoomItems(ArrayList<Item> items){
         roomItems = items;
     }
     
+    /**
+     * This method displays the items in the current room
+     */
     public void displayItemsInRoom(){
-        System.out.println("Items in the room: " + roomItems);
+        System.out.println("Items in the room: " + roomItems.toString());
     }
     
-    public String takeRoomItem(String item){
-        String returnItem = "";
-        if(! roomItems.contains(item)){
-            System.out.println("Item not found");
-            return returnItem;
-        } else{
-            return item;
+    /**
+     * This methods takes a specified room item by the user.
+     * @param String item: the item being taken.
+     * @return tempItem: the item being taken
+     */
+    public Item takeRoomItem(String item){
+        ListIterator<Item> iterator = roomItems.listIterator();
+        while(iterator.hasNext()){
+            Item tempItem = iterator.next();
+            if(item.equals(tempItem.getDescription())){
+                return tempItem;
+            }
         }
+        return null;
     }
     
     /**
