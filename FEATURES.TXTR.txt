@@ -1,0 +1,28 @@
+Features:
+
+C Level Elements:
+- added another command, ie. eat with a simple text response
+- - - - Instead of eat I added an inventory command that uses my displayInventory() method in Class Player
+- Streamline printing of available commands
+- added the look command to my game that uses the look() method
+
+B Level Elements:
+- added items to my game. Each room can have one item in it. Items have description, weight, and a value.
+When printing room info, Item(s) are included.
+- make it so rooms can hold multiple items
+- - - - Each room can hold 3 items, with the items being selected randomly from a total of 10 items.
+- implemented the back command (back one room)
+- redesigned the back command method to go back many rooms (back repeatedly retraces your steps)
+- added a Player that can carry one or more objects according to the options presented
+
+Extra Credit:
+- Made an Item Class to store each items attributes.
+- Made a Player Class to store player attributes and an inventory.
+- Made an item have 3 attributes, Item(itemDescription, itemValue, itemWeight)
+- Made an Items Class to generate the items that can be collected in game.
+- Made rooms be given 3 random items using my getRandomItems() method in createRooms() method. 
+- Made a getRandomItems() method to spawn 3 random items from Item Class in each room within
+createRooms() method.
+- Impemented a TAKE command to extract a single item from the list of items that spawn in each room,
+using my addToInventory() method of class Room, and my takeRoomItem() method of Class Player.
+- Made it so the player can only exit the University if he has a "keycard" in his inventory.

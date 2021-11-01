@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 
 /**
- * Class Room - a room in my escape room game.  
+ * Class Room - a room in the escape room game.  
  *
  * A "Room" represents one location in the scenery of the game.  It is 
  * connected to other rooms via exits.  For each existing exit, the room 
@@ -35,7 +35,7 @@ public class Room
 
     /**
      * This method allows an item to be added to a room.
-     * @param ArrayList<Items> items: an arraylist to store items to put into a room.
+     * @param items - an arraylist to store items to put into a room.
      */
     public void addRoomItems(ArrayList<Item> items){
         roomItems = items;
@@ -50,8 +50,8 @@ public class Room
     
     /**
      * This methods takes a specified room item by the user.
-     * @param String item: the item being taken.
-     * @return tempItem: the item being taken
+     * @param item - the item being taken.
+     * @return tempItem - the item being taken, instance of Item
      */
     public Item takeRoomItem(String item){
         ListIterator<Item> iterator = roomItems.listIterator();

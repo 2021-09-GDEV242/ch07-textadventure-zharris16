@@ -40,6 +40,7 @@ public class Game
     
     /**
      * This is the main for class Game.
+     * @param args - an array of input arguments
      */
     public static void main(String [] args){
         Game game = new Game();
@@ -272,10 +273,11 @@ public class Game
      */
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You must Survive.");
-        System.out.println("You have been stationed on the front lines of war.");
-        System.out.println("You will be faced with a serious of decisions");
-        System.out.println("that will determine your fate on the coming conflict");
+        System.out.println("You are lost. You are alone. You must escape.");
+        System.out.println("You have been put in an abandoned University.");
+        System.out.println("You will explore for collectibles and a keycard.");
+        System.out.println("The keycard will be your way out of the front gate.");
+        System.out.println("Find collectibles, the keycard, and the front gate to win");
         System.out.println();
         System.out.println("Your command words are:");
         System.out.println(parser.getCommands().getCommandList());
@@ -284,6 +286,7 @@ public class Game
     /** 
      * Try to go in one direction. If there is an exit, enter the new
      * room, otherwise print an error message.
+     * @param command - the inputed command
      */
     private void goRoom(Command command) 
     {
@@ -319,7 +322,7 @@ public class Game
     }
 
     /**
-     * This method lets the user bo back to a rpevious room repeatedly.
+     * This method lets the user bo back to a previous room repeatedly.
      */
     private void goBack(){
         if(previousRooms.size() == 0){

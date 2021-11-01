@@ -18,6 +18,7 @@ public class Player
     private ArrayList<Item> inventory;
     /**
      * Constructor for objects of class Player
+     * @param name - name of player
      */
     public Player(String name)
     {
@@ -58,15 +59,16 @@ public class Player
     
     /**
      * This method returns the players current inventory.
-     * @return ArrayList<Item> - array list of player inventory items
+     * @return - array list of player inventory items
      */
     public ArrayList<Item> getInventory(){
         return inventory;
     }
     
     /**
-     * This method gets a speicfic inventory item.
+     * This method gets a specific inventory item.
      * @param item - the item being read from the player inventory.
+     * @return Item - instance of Item class
      */
     public Item getInventoryItem(String item){
         ListIterator<Item> iterator = inventory.listIterator();

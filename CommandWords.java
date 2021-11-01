@@ -49,6 +49,7 @@ public class CommandWords
     /**
      * Check whether a given String is a valid command word. 
      * @return true if it is, false if it isn't.
+     * @param aString - the string being checked if it is a valid command.
      */
     public boolean isCommand(String aString)
     {
@@ -57,6 +58,7 @@ public class CommandWords
 
     /**
      * Print all valid commands to System.out.
+     * @return String - list of commands
      */
     public String getCommandList() 
     {

@@ -10,7 +10,7 @@
  * command words. If the user entered an invalid command (a word that is not
  * known) then the CommandWord is UNKNOWN.
  *
- * If the command had only one word, then the second word is <null>.
+ * If the command had only one word, then the second word is null.
  * 
  * @author  Zachary Harris
  * @version 10.31.21
@@ -26,7 +26,7 @@ public class Command
      * the second may be null.
      * @param commandWord The CommandWord. UNKNOWN if the command word
      *                  was not recognised.
-     * @param secondWord The second word of the command. May be null.
+     * @param secondWord The second word of the command. May be null
      */
     public Command(CommandWord commandWord, String secondWord)
     {

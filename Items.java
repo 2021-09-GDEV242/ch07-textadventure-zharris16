@@ -40,7 +40,7 @@ public class Items
     /**
      * This method allows randomizes the items that can be found in each room.
      * @param numItems - number of game items that spawn in each room.
-     * @return ArrayList<Item> - an array of random items.
+     * @return - an array of random items.
      */
     public ArrayList<Item> getRandomItems(int numItems)
     {
